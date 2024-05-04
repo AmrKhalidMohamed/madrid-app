@@ -1,0 +1,46 @@
+
+.icon-2{
+    color: white;
+    font-size: 50px;
+
+}
+.forigen{
+    display: flex;
+    align-items: center; 
+   
+}
+
+.card-4 {
+    position: relative;
+    transition: all 0.5s ease-in;
+    cursor: pointer;
+    height: 285px;
+    width: 380px;
+    opacity: 0.8;
+    visibility: none;
+    transition: 0.5s ease;
+  }
+  .card-4:hover  {
+    opacity: 0.4;
+  }
+.img4{
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    
+}
+.mm{
+    position: absolute;
+    z-index: 1;
+    margin-top: -20px;
+}
+.title-4{
+    font-size: 20px;
+    font-weight: bold;
+    align-items: center;
+    background-color: rgb(63, 100, 4);
+    width:385px ;
+    height: 40px;
+    border-radius: 10px;
+    
+}
