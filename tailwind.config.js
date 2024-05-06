@@ -12,6 +12,9 @@ module.exports = {
       fontFamily:{
         first: ['Libre Baskerville'],
         second: ['Palanquin']
+      },
+      backgroundImage:{
+        img1: "url('./Images/img1.jpg')"
       }
     },
   },

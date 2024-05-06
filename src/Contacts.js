@@ -7,7 +7,7 @@ import axios from 'axios'
 export default function () {
   return (
     <div>
-      <Navbar/>
+      <Navbar activeId={3}/>
     </div>
   )
 }

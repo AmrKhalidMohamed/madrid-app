@@ -3,12 +3,18 @@ import { Link } from "react-router-dom";
 import { NavItem } from "./NavItem";
 import Logo from '../Images/madridLogo.png'
 
-export default function Navbar() {
+export default function Navbar(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  
+  const links = [
+    { id: 1, path: '/', text: 'HOME' },
+    { id: 2, path: '/tours', text: 'TOURS' },
+    { id: 3, path: '/contacts', text: 'CONTACTS' },
+  ];
 
   return (
     <div className="bg-black grid sm:grid-cols-2 mb-20">
@@ -27,9 +33,17 @@ export default function Navbar() {
       </div>
         <div className={`sm:flex sm:flex-grow sm:items-center sm:justify-end ${isOpen ? 'block' : 'hidden'}`} id="navbar-default">
           <ul className={`justify-center items-center gap-[45px] ${isOpen ? 'block' : 'inline-flex'}`}>
-            <NavItem text='HOME' link='/'/>
-            <NavItem text='TOURS' link='/tours'/>
-            <NavItem text='CONTACTS' link='/contacts'/>
+            {links.map((link) => (
+              <li
+                key={link.id}
+              >
+                <NavItem
+                  link={link.path}
+                  text={link.text}
+                  active={link.id === props.activeId ? true : false}
+                />
+              </li>
+            ))}
           </ul>
         </div>
     </div>
