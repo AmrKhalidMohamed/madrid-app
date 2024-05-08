@@ -14,9 +14,12 @@ module.exports = {
         second: ['Palanquin']
       },
       backgroundImage:{
-        img1: "url('./Images/img1.jpg')"
+        img1: "url('./Images/home.png')",
+        locationBg: "url('./Images/locationBg.png')"
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
 }
