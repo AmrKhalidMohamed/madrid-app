@@ -1,28 +1,62 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { React, useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { GoBackButton } from "./Component/GoBackButton";
+import { ImageView } from "./Component/ImageView";
+import { Footer } from "./Component/Footer";
+import { Button } from "./Component/Button";
+import axios from "axios";
+import { FormsLogic } from "./Component/FormsLogic";
 
 const TourDetails = () => {
-  const navigate = useNavigate();
   
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { state } = location;
+  const baseUrl = "http://127.0.0.1:8000";
+  const [x, setX] = useState(0);
+  const imageUrl =
+    state.images && state.images.length > 0
+      ? state.images[x].replace("public/", "/storage/")
+      : "";
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
-    <div>
-      <svg
-        onClick={() => navigate(-1)}
-        className="mt-5"
-        width="54"
-        height="46"
-        viewBox="0 0 54 46"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0.878681 20.8787C-0.292892 22.0503 -0.292892 23.9497 0.878681 25.1213L19.9706 44.2132C21.1421 45.3848 23.0416 45.3848 24.2132 44.2132C25.3848 43.0416 25.3848 41.1421 24.2132 39.9706L7.24264 23L24.2132 6.02944C25.3848 4.85786 25.3848 2.95837 24.2132 1.7868C23.0416 0.615223 21.1421 0.615223 19.9706 1.7868L0.878681 20.8787ZM54 20L3 20V26L54 26V20Z"
-          fill="white"
-        />
-      </svg>
-      <div className="font-first font-bold text-white text-[70px] mt-5">
-        Tour Details
+    <div className=" w-full">
+      <div className=" mt-3 items-center grid grid-cols-1 md:grid-cols-12 ">
+        <GoBackButton navigate={navigate} className=" md:col-span-2" />
+        <div className="flex w-full justify-center items-center md:col-span-10">
+          <div className="font-first font-bold text-white text-[40px]">
+            {state.title}
+          </div>
+        </div>
       </div>
+      <ImageView
+        title={state.title}
+        images={state.images}
+        baseUrl={baseUrl}
+        x={x}
+        setX={setX}
+        imageUrl={imageUrl}
+      ></ImageView>
+      <div className="mt-5 w-[80%] mx-auto">
+        <div className="flex justify-between items-center text-white mt-5 ">
+          <div className="font-bold text-[40px] font-first">Description</div>
+          <div className="text-[24px] font-first">
+            {state.start_date} - {state.end_date}
+          </div>
+        </div>
+        <div className="text-white text-[24px] mt-5 font-second">
+          {state.description}
+        </div>
+        <div className="text-white text-[24px] mt-5 font-first">
+          {state.price} EGP
+        </div>
+      </div>
+      <FormsLogic tourId={state.id} />
+      <Footer />
     </div>
   );
 };

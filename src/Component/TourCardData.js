@@ -1,5 +1,6 @@
 import React from 'react';
 import { TourCard } from './TourCard';
+import { Link } from 'react-router-dom';
 
 export function TourCardData({ data }) {
   const baseUrl = 'http://127.0.0.1:8000';
@@ -8,12 +9,18 @@ export function TourCardData({ data }) {
     const imageUrl = item.images && item.images.length > 0 ? item.images[0].replace('public/', '') : '';
 
     return (
-      <TourCard 
+      <Link
         key={item.id}
-        id={item.id}
-        title={item.title}
-        image={imageUrl ? `${baseUrl}/storage/${imageUrl}` : ''}
-      />
+        to={`${item.id}`}
+        state={item}
+        className="mt-16 mb-5"
+      >
+        <TourCard
+          title={item.title}
+          image={imageUrl ? `${baseUrl}/storage/${imageUrl}` : ""}
+          item={item}
+        />
+      </Link>
     );
   });
 };

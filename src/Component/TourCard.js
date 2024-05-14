@@ -1,10 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export function TourCard(props) {
   return (
     <li>
-      <Link to={`${props.id}`} className="flex w-[523px] h-[294px] relative mt-16 mb-5 group snap-start select-none">
+      <div className="flex w-[523px] h-[294px] relative group snap-start select-none overflow-y-hidden">
         <img
           className="w-full h-full left-0 top-0 absolute rounded-[10px]"
           src={props.image || "https://via.placeholder.com/523x294"}
@@ -16,7 +15,7 @@ export function TourCard(props) {
             {props.title}
           </div>
         </div>
-      </Link>
+      </div>
     </li>
   );
 }
