@@ -1,10 +1,15 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import { Form } from "./Form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BookingContext } from "../Context/BookingContext";
+import Cookies from 'js-cookie' 
 
 export function FormsLogic(props) {
   const navigate = useNavigate();
+  
+  const { setBookingId } = useContext(BookingContext);
+  const { bookingId } = useContext(BookingContext);
 
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -22,16 +27,27 @@ export function FormsLogic(props) {
         phone_number: phoneNumber,
       }
     );
-
+  
     // Create a new booking with the created customer's ID
     const bookingResponse = await axios.post(
       "http://127.0.0.1:8000/api/bookings",
       {
         customer_id: customerResponse.data.data.id,
         tour_id: props.tourId,
+        status: 'pending',
         booking_date: bookingDate,
       }
     );
+    
+    Cookies.set("bookingId", bookingResponse.data.data.id);
+
+    setBookingId(Cookies.get('bookingId'));
+
+    console.log(bookingId);
+
+    alert("Booking completed successfuly!");
+    navigate("/tours");
+    console.log(bookingId)
 
   } catch (error) {
     console.log(error.message)
@@ -40,7 +56,6 @@ export function FormsLogic(props) {
   return (
     <form
       method="post"
-      action={navigate(-1)}
       onSubmit={handleSubmit}
       className=" mt-5 w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 gap-5"
     >

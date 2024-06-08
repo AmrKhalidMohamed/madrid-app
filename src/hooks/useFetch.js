@@ -8,15 +8,12 @@ const useFetch = (endPoint) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const options = {
-    url: `${baseUrl}/api/${endPoint}`,
-    method: 'get',
-  };
+  const fetchData = useCallback(async () => {
+    if (!endPoint) return; // Add this line to prevent fetching when endPoint is null
 
-  const fetchData = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.request(options);
+      const response = await axios.get(`${baseUrl}/api/${endPoint}`);
       if (endPoint.endsWith('images')) {
         setData(response.data);
       } else {
@@ -28,17 +25,13 @@ const useFetch = (endPoint) => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const refetch = useCallback(() => {
-    fetchData();
-  }, [fetchData]);
+  }, [endPoint]); // Add endPoint as a dependency
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]); // Add fetchData as a dependency
 
-  return { data, isLoading, error, refetch };
+  return { data, isLoading, error };
 };
 
 export default useFetch;

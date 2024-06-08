@@ -13,7 +13,8 @@ export default function Navbar(props) {
   const links = [
     { id: 1, path: "/", text: "HOME" },
     { id: 2, path: "/tours", text: "TOURS" },
-    { id: 3, path: "/contacts", text: "CONTACTS" },
+    { id: 3, path: "/bookings", text: "BOOKINGS" },
+    { id: 4, path: "/contacts", text: "CONTACTS" },
   ];
 
   return (

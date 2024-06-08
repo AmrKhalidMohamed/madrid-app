@@ -2,13 +2,12 @@ import React from "react";
 import Navbar from "./Component/Navbar";
 import { Footer } from "./Component/Footer";
 import { Button } from "./Component/Button";
-import { locationBg } from "./Images/locationBg.png";
 import { Form } from "./Component/Form";
 
 export default function () {
   return (
     <div>
-      <Navbar activeId={3} />
+      <Navbar activeId={4} />
 
       <div className="w-full text-center mb-[180px] items-center">
         <div className="text-white text-[40px] font-bold font-first">
@@ -34,7 +33,7 @@ export default function () {
               Our location
             </div>
             <div className=" mt-20">
-              <Button text="Visit us" />
+              <Button text="Visit us" styles="w-48" />
             </div>
           </div>
           <div className=" absolute end-[440px] top-[50px] ">

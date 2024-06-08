@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Navbar from "./Component/Navbar";
 import { CatigoryTitle } from "./Component/CatigoryTitle";
 import { TourCardData } from "./Component/TourCardData";
 import useFetch from "./hooks/useFetch";
 import { Footer } from "./Component/Footer";
+import { BookingContext } from "./Context/BookingContext";
+
 
 export default function () {
   const { data: toursData, error: toursError } = useFetch("tours");
+  const { bookingId } = useContext(BookingContext);
+  console.log(bookingId)
 
   const offerTours = toursData.filter((tour) => tour.type === "offer");
   const religiousTours = toursData.filter((tour) => tour.type === "religious");
