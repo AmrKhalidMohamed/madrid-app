@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Navbar from "./Component/Navbar";
 import Header from "./Component/Header";
 import Card from "./Component/Card";
 import { Button } from "./Component/Button";
 import { Footer } from "./Component/Footer";
 import useFetch from "./hooks/useFetch";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [currentTourIndex, setCurrentTourIndex] = useState(0);
@@ -29,13 +29,14 @@ const Home = () => {
       <div className="grid sm:grid-cols-12 z-1">
         <div className="sm:col-span-6 z-1">
           <Header />
-          <Button text="Browse our offers" styles="w-48" />
+          <Link to="tours">
+            <Button text="Browse our offers" styles="w-48" />
+          </Link>
         </div>
         <div className="sm:col-span-6 mx-auto z-1">
           {toursData.length > 0 && (
             <Card
-              title={toursData[currentTourIndex]?.title}
-              description={toursData[currentTourIndex]?.description}
+              data={toursData[currentTourIndex]}
               image={`http://127.0.0.1:8000/storage/${toursData[
                 currentTourIndex
               ]?.images[0].replace("public/", "")}`}
