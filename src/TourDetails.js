@@ -5,6 +5,8 @@ import { ImageView } from "./Component/ImageView";
 import { Footer } from "./Component/Footer";
 import { Button } from "./Component/Button";
 import { FormsLogic } from "./Component/FormsLogic";
+import { Loading } from "./Component/Loading";
+import { ErrorPage } from "./Component/ErrorPage";
 
 const TourDetails = () => {
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ const TourDetails = () => {
   const { state } = location;
   const baseUrl = "http://127.0.0.1:8000";
   const [x, setX] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const imageUrl =
     state.images && state.images.length > 0
       ? state.images[x].replace("public/", "/storage/")
@@ -19,10 +22,25 @@ const TourDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsLoading(false);
   }, []);
+
+  if (!state) {
+    return (
+      <div className="min-h-screen bg-black">
+        <ErrorPage
+          title="Tour not available"
+          description="We couldn't find that tour. Return to the tours list to try again."
+          onGoHome={() => navigate("/tours")}
+        />
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">
+      {isLoading && <Loading message="Loading tour details..." />}
       <div className="mt-3 items-center grid grid-cols-1 md:grid-cols-12">
         <GoBackButton navigate={navigate} className="md:col-span-2" />
         <div className="flex w-full justify-center items-center md:col-span-10">
