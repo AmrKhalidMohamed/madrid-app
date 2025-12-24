@@ -32,14 +32,14 @@ const Bookings = () => {
 
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/bookings?customer_id[eq]=${customerId}`
+        `https://madridtours-production.up.railway.app/api/bookings?customer_id[eq]=${customerId}`
       );
       const bookings = response.data.data;
       setBookingsData(bookings);
 
       if (bookings.length > 0) {
         const tourRequests = bookings.map((booking) =>
-          axios.get(`http://127.0.0.1:8000/api/tours/${booking.tour_id}`)
+          axios.get(`https://madridtours-production.up.railway.app/api/tours/${booking.tour_id}`)
         );
         const toursResponses = await Promise.all(tourRequests);
         const tours = toursResponses.map((res) => res.data.data);
@@ -78,7 +78,7 @@ const Bookings = () => {
       const updatedBooking = { ...booking, status: "canceled" };
 
       const response = await axios.put(
-        `http://127.0.0.1:8000/api/bookings/${bookingId}`,
+        `https://madridtours-production.up.railway.app/api/bookings/${bookingId}`,
         updatedBooking
       );
 
@@ -227,7 +227,7 @@ const Bookings = () => {
                     title={toursData[tourIndex]?.title || "Loading..."}
                     image={
                       toursData[tourIndex]?.images?.[0]
-                        ? `http://127.0.0.1:8000/storage/${toursData[tourIndex].images[0].replace("public/", "")}`
+                        ? `https://madridtours-production.up.railway.app/storage/${toursData[tourIndex].images[0].replace("public/", "")}`
                         : ""
                     }
                     bookingDate={booking.booking_date}

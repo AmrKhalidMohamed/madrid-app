@@ -94,7 +94,7 @@ const Home = () => {
                 <div className="w-full max-w-[320px] sm:max-w-[380px] md:max-w-[430px]">
                   <Card
                     data={toursData[currentTourIndex]}
-                    image={`http://127.0.0.1:8000/storage/${toursData[
+                    image={`https://madridtours-production.up.railway.app/storage/${toursData[
                       currentTourIndex
                     ]?.images[0]?.replace("public/", "")}`}
                     currentIndex={currentTourIndex}
@@ -225,7 +225,7 @@ const Home = () => {
               >
                 <div className="relative rounded-xl overflow-hidden aspect-[4/3]">
                   <img
-                    src={`http://127.0.0.1:8000/storage/${tour.images?.[0]?.replace(
+                    src={`https://madridtours-production.up.railway.app/storage/${tour.images?.[0]?.replace(
                       "public/",
                       ""
                     )}`}

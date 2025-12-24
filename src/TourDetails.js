@@ -12,7 +12,7 @@ const TourDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { state } = location;
-  const baseUrl = "http://127.0.0.1:8000";
+  const baseUrl = "https://madridtours-production.up.railway.app";
   const [x, setX] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const imageUrl =

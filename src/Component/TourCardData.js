@@ -3,7 +3,7 @@ import { TourCard } from './TourCard';
 import { Link } from 'react-router-dom';
 
 export function TourCardData({ data }) {
-  const baseUrl = 'http://127.0.0.1:8000';
+  const baseUrl = 'https://madridtours-production.up.railway.app';
 
   return data.map((item) => {
     const imageUrl = item.images && item.images.length > 0 ? item.images[0].replace('public/', '') : '';
