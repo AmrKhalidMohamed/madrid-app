@@ -29,7 +29,7 @@ export function FormsLogic(props) {
       if (!customerId) {
         // Create a new customer if customerId is null
         customerResponse = await axios.post(
-          "http://127.0.0.1:8000/api/customers",
+          "https://madridtours-production.up.railway.app/api/customers",
           {
             name: name,
             phone_number: phoneNumber,
@@ -41,7 +41,7 @@ export function FormsLogic(props) {
 
       // Create a new booking with the customerId (either existing or newly created)
       const bookingResponse = await axios.post(
-        "http://127.0.0.1:8000/api/bookings",
+        "https://madridtours-production.up.railway.app/api/bookings",
         {
           customer_id: customerId || customerResponse.data.data.id,
           tour_id: props.tourId,
